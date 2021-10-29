@@ -13,7 +13,7 @@ function Login(props) {
         <div id={"rootContainer"}>
             <div id={"mainView"} >
             <img src={logo} id="logo"/>
-            <p id="header">Admin Login</p>
+            <p id="header">Dashboard Admin Login</p>
             <div class="inputField">
             <p style={{fontSize: 25, marginRight: 20, fontWeight: 500}}>Username: </p>
             <input value={username} type="email" onChange={event=>setUserN(event.target.value)} 
