@@ -1,23 +1,32 @@
 import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import {
+  Switch,
+  Route,
+  BrowserRouter,
+  Link
+} from "react-router-dom";
+import Login from './Screens/login';
+import Dashboard from './Screens/dashboard';
+
 
 function App() {
+
+ const [userValid, setUserValid] = React.useState(false)
+  // Dashboard root routing
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <BrowserRouter >
+      <Switch>
+        <Route path="/login">
+          <Login setValidation={setUserValid} userValid={userValid}/>
+          </Route>
+        {userValid === true ? (<Route path="/dashboard" component={Dashboard} />) :
+         (<Link to="/login" style={{fontSize: 30}}>Must Sign in with valid credentials</Link>)}
+  
+      </Switch>
+      </BrowserRouter>
     </div>
   );
 }
