@@ -3,10 +3,12 @@ import '../Css/styles.css'
 import logo from '../Assets/logo.jpeg'
 import {Link} from 'react-router-dom'
 import Dashboard from './dashboard'
+import Server from '../HTTP/axiosConfig'
   
 function Login(props) {
     const [username, setUserN] = useState("")
     const [password, setUserP] = useState("")
+    const server = new Server("http://localhost");
     
 
     return(
@@ -33,7 +35,9 @@ function Login(props) {
                 <p style={{fontSize: 18, fontWeight: "bold"}} onClick={()=>{}}>Validate</p>
             </button>
             {props.userValid === true && (
-                <Link to={"/dashboard"}>Redirection</Link>
+                <div style={{marginTop: 40}}>
+                <Link to={"/dashboard"} style={{fontSize: 30, borderWidth: 1, borderStyle: "solid", paddingTop: 7, paddingBottom: 7, paddingRight: 3, paddingLeft: 3}}>Admin validated click to be redirected to Dashboard</Link>
+                </div>
             )}
             </div>
         </div>
