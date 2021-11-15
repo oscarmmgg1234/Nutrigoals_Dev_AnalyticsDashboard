@@ -6,10 +6,11 @@ class Auth_Server {
         this.request = request;
     }
      Validate = async (username,password) =>{
+        if(username != null && password != null){
         let result = false
         await this.request.get("/auth" ,{headers: {"username"  : username, "password" : password, "content-type": "application/json"}}).then((res)=>{result = (res.data.authorized === 'true')}) 
-        console.log(result)
         return result
+        }
     }
 }
 
