@@ -3,13 +3,27 @@ import '../Css/styles.css'
 import logo from '../Assets/logo.jpeg'
 import {Link} from 'react-router-dom'
 import Dashboard from './dashboard'
-import Server from '../HTTP/axiosConfig'
+import {Auth_Server} from '../HTTP/axiosConfig'
+
   
+
+
+
+
 function Login(props) {
     const [username, setUserN] = useState("")
     const [password, setUserP] = useState("")
-    const server = new Server("http://localhost");
-    
+    const AuthServer = new Auth_Server();
+
+    async function validate(){
+        const auth_result = await AuthServer.Validate(username, password)
+        if(auth_result === true){
+            props.setValidation(true)
+        }
+        else{
+            props.setValidation(false)
+        }
+    }
 
     return(
         <div id={"rootContainer"}>
@@ -32,7 +46,7 @@ function Login(props) {
             </div>
             
             <button type="button" style={{backgroundColor: "orange", width: 300, height: 60, borderRadius: 20, marginTop: 60}}>
-                <p style={{fontSize: 18, fontWeight: "bold"}} onClick={()=>{}}>Validate</p>
+                <p style={{fontSize: 18, fontWeight: "bold"}} onClick={()=>validate()}>Validate</p>
             </button>
             {props.userValid === true && (
                 <div style={{marginTop: 40}}>

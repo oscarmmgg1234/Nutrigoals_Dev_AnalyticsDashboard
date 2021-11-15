@@ -1,19 +1,24 @@
 import axios from "axios";
 
-
-export default class Server {
+class Auth_Server {
     constructor(){
-        let request = axios.create({baseURL: "http://localhost", responseType: JSON})
+        let request = axios.create({baseURL: "http://34.216.10.88:5006", responseType: 'json',})
         this.request = request;
     }
-    GET = (endPoint, data) => {
-        this.request.get(endPoint, data).then((res)=>{return res.data}) 
+     Validate = async (username,password) =>{
+        let result = false
+        await this.request.get("/auth" ,{headers: {"username"  : username, "password" : password, "content-type": "application/json"}}).then((res)=>{result = (res.data.authorized === 'true')}) 
+        console.log(result)
+        return result
     }
-    POST = (endPoint, data) => {
-        this.request.get(endPoint, data).then((res)=>{return res.data}) 
-    }
+}
 
-    
+class Admin_Server {
+    constructor(){
+        let request = axios.create({baseURL: "http://34.216.10.88:5007", responseType: 'json',});
+        this.request = request;
+    }
     
 }
 
+export {Admin_Server, Auth_Server}

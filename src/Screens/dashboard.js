@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import '../Css/styles.css'
-
+import {Admin_Server} from '../HTTP/axiosConfig'
 
 const Dashboard = (props) => {
 
@@ -14,7 +14,7 @@ const Dashboard = (props) => {
     const [APIFoodL, setAPIFoodL] = React.useState(1113);
     const [Adate, setAdate] = React.useState(moment().format('L'))
     
-  
+    const admin_server = new Admin_Server()
 
     return(
         <div id={"dashboardContainer"}>
